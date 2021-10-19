@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prohub Profiling System</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+        <div class="container">
+            <a href="" class=navbar-brand>Prohub Profiling System</a>
+            <button class="navbar-toggler" tyoe="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item px-3"><a href="#" class="nav-link">Developers</a></li>
+                    <li class="nav-item px-3"><a href="#" class="nav-link">Profiles</a></li>
+                    <li class="nav-item px-3"><a href="#" class="nav-link">Add Dev</a></li>
+                </ul>
+                <button class="btn btn-info px-3">Login/Register</button>
+
+            </div>
+        </div>
+    </nav>
+<div class="container p-3 m-5">
+<div class="row mt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title text-center">Login</h3>
+                <hr>
+                <div class="text-center">
+                    <p class="card-text text-bold">I am a Python Developer</p>
+                    <a href="#" class="btn my-1 btn-primary">Email Me</a>
+                </div>
+                <div class="py-4 center-block">
+
+                    <div id="div_login">
+                        <h1>Login</h1>
+                        <div id="message"></div>
+                        <div>
+                            <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
+                        </div>
+                        <div>
+                            <input type="password" class="textbox" id="txt_pwd" name="txt_pwd" placeholder="Password"/>
+                        </div>
+                        <div>
+                            <input type="button" class="btn my-2 btn-primary float-right" value="Submit" name="but_submit" id="but_submit" />
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>    
+</div>
+</footer>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+
+</script>
+<script>
+$(document).ready(function(){
+    $("#but_submit").click(function(){
+        var username = $("#txt_uname").val().trim();
+        var password = $("#txt_pwd").val().trim();
+
+        if( username != "" && password != "" ){
+            $.ajax({
+                url:'checkUser.php',
+                type:'post',
+                data:{username:username,password:password},
+                success:function(response){
+                    var msg = "";
+                    if(response == 1){
+                        window.location = "home.php";
+                    }else{
+                        msg = "Invalid username and password!";
+                    }
+                    $("#message").html(msg);
+                }
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>
